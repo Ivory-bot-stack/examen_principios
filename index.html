@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KORVANI® — Plan empresarial y presupuesto operativo</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--void:#04020b;--ice:#eef0ff;--mute:#aeb4e0;--vi:#8b5cf6;--bl:#3b82f6;--line:rgba(140,120,255,.28)}
+*{box-sizing:border-box;margin:0}
+html{font-size:clamp(12px,2vh,19px);background:var(--void);color:var(--ice);font-family:Manrope,system-ui,sans-serif;line-height:1.45}
+html.pres{font-size:clamp(14px,2.5vh,26px)}
+body{padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0)}
+#gl{display:none}
+.syne,h1,h2,.n{font-family:Syne,Manrope,sans-serif}
+#hero{text-align:center;padding:12vh 6vw 8vh}
+h1{font-weight:800;font-size:clamp(2.6rem,11vw,9rem);letter-spacing:.14em;line-height:1;background:linear-gradient(100deg,#fff 20%,#b79cff 60%,#5b8dff);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 span{display:inline-block}
+#hero .sub{font-size:1.2rem;color:var(--mute);margin-top:1.2rem}
+#hero .ph{font-family:Syne,sans-serif;font-weight:600;font-size:clamp(1.3rem,3vw,2.2rem);margin-top:1.4rem}
+#hero .ds{max-width:46ch;margin:.8rem auto 0;color:var(--mute)}
+.slide{padding:5vh 5vw}
+.card{max-width:1080px;margin:auto;max-height:86vh;overflow:auto;background:linear-gradient(135deg,rgba(22,15,52,.78),rgba(7,10,34,.66));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,42px);box-shadow:0 0 90px rgba(70,50,255,.2)}
+.chip{display:inline-block;font-size:.75rem;color:#c9bbff;border:1px solid var(--line);border-radius:99px;padding:.15rem .7rem;margin-bottom:.8rem}
+h2{font-weight:700;font-size:clamp(1.5rem,4.2vw,3.1rem);line-height:1.08;letter-spacing:-.02em;margin-bottom:.9rem;max-width:22ch}
+h2.w{max-width:30ch}
+p{max-width:70ch;margin-bottom:.7rem}
+ul{padding-left:1.1rem;margin:.3rem 0 .7rem}li{margin:.25rem 0}li::marker{color:var(--vi)}
+.o{border-left:3px solid var(--bl);padding-left:.8rem;color:#d7dcff}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7rem;margin:.6rem 0}
+.c{background:rgba(120,100,255,.1);border:1px solid var(--line);border-left:3px solid var(--vi);border-radius:8px;padding:.7rem .9rem}
+.c b{display:block;font-family:Syne,sans-serif;font-weight:600;margin-bottom:.15rem}
+.c span{color:var(--mute);font-size:.92em}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.cols h3{font-family:Syne,sans-serif;font-size:1rem;color:#b79cff}
+.n{font-weight:800;font-size:clamp(1.8rem,6vh,3.6rem);line-height:1;background:linear-gradient(100deg,#fff,#8fa8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.st{display:flex;flex-wrap:wrap;gap:1.4rem;margin:.6rem 0}.st div{min-width:150px}.st small{display:block;color:var(--mute)}
+blockquote{font-family:Syne,sans-serif;font-size:clamp(1.15rem,2.8vw,2rem);line-height:1.3;font-weight:600;max-width:34ch;border-left:3px solid var(--vi);padding-left:1.2rem}
+table{width:100%;border-collapse:collapse}td{padding:.28rem .4rem;border-bottom:1px solid var(--line)}td+td{text-align:right;font-variant-numeric:tabular-nums}tr:last-child td{font-weight:700;border:0;color:#fff}
+.org .top{text-align:center;max-width:380px;margin:0 auto}.org .g{grid-template-columns:repeat(3,1fr)}
+.warn{font-size:.85em;color:#ffd9a0;border:1px dashed rgba(255,200,120,.5);border-radius:8px;padding:.5rem .8rem;margin-top:.6rem}
+.bar{display:flex;height:2.4rem;margin:.8rem 0 1rem;transform:perspective(700px) rotateX(24deg) rotateY(-10deg);box-shadow:0 18px 30px rgba(60,40,255,.35)}
+.bar i{font:600 .8rem/2.4rem Manrope,sans-serif;text-align:center;font-style:normal;overflow:hidden;white-space:nowrap}
+.bar i:first-child{background:linear-gradient(#5b4bd6,#3a2ea0)}.bar i:last-child{background:linear-gradient(#3b82f6,#1f56c4)}
+.fin{font-size:.9em;color:var(--mute)}
+.fr{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(1.3rem,3.4vw,2.4rem);margin-top:.8rem;background:linear-gradient(100deg,#fff,#b79cff,#5b8dff);-webkit-background-clip:text;background-clip:text;color:transparent}
+#ui,#flash,#hint{display:none}
+html.cine{overflow-x:hidden}
+html.cine #gl{display:block;position:fixed;inset:0;width:100%;height:100%}
+html.cine #stage{position:fixed;inset:0;pointer-events:none}
+html.cine #hero{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:10vh 6vw 12vh}
+html.cine .slide{position:absolute;inset:0;display:flex;align-items:center;opacity:0;visibility:hidden;perspective:1200px}
+html.cine .card{pointer-events:auto;width:100%}
+html.cine #track{height:calc(58 * 52vh)}
+html.cine #flash{display:block;position:fixed;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle,#fff,#7c8cff 35%,transparent 70%)}
+html.cine #hint{display:block;position:fixed;bottom:9vh;left:0;right:0;text-align:center;color:var(--mute);font-size:.85rem;pointer-events:none}
+html.cine #ui{display:flex;position:fixed;left:50%;transform:translateX(-50%);bottom:max(14px,env(safe-area-inset-bottom));gap:.5rem;align-items:center;background:rgba(10,8,30,.7);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:99px;padding:.3rem .5rem;z-index:5}
+#ui button{font:600 .85rem Manrope,sans-serif;color:var(--ice);background:transparent;border:1px solid var(--line);border-radius:99px;padding:.4rem .9rem;cursor:pointer}
+#ui button:hover{background:rgba(140,120,255,.25)}#ui button:focus-visible{outline:2px solid #b79cff;outline-offset:2px}
+#ct{min-width:4.5rem;text-align:center;font-variant-numeric:tabular-nums;font-size:.85rem}
+html.pres .card{background:rgba(6,6,24,.92);backdrop-filter:none}
+@media(max-width:640px){.org .g{grid-template-columns:1fr}#ui button{padding:.4rem .6rem}}
+</style></head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div id="stage"><main id="main">
+<header id="hero"><div><h1 id="ttl">KORVANI®</h1><p class="sub">Plan empresarial y presupuesto operativo</p></div>
+<div><p class="ph">Tecnología para empresas ambiciosas.</p><p class="ds">Soluciones integrales de seguridad tecnológica para proteger instalaciones, información y operaciones.</p></div></header>
+</main></div>
+<div id="track"></div><div id="flash"></div><div id="hint">Desplaza para avanzar</div>
+<nav id="ui" aria-label="Navegación de la presentación"><button id="pv" aria-label="Diapositiva anterior">‹</button><span id="ct" aria-live="polite">1 / 18</span><button id="nx" aria-label="Diapositiva siguiente">›</button><button id="pm" aria-pressed="false">Modo proyector</button></nav>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const L=a=>'<ul>'+a.map(x=>`<li>${x}</li>`).join('')+'</ul>';
+const C=a=>'<div class="g">'+a.map(([h,p])=>`<div class="c"><b>${h}</b>${p?`<span>${p}</span>`:''}</div>`).join('')+'</div>';
+const O=s=>`<p class="o"><b>Objetivo:</b> ${s}</p>`;
+const N=(n,l)=>`<div><div class="n">${n}</div><small>${l}</small></div>`;
+const D=[
+['¿Qué es KORVANI?','Protección tecnológica integral',`<p>KORVANI es una propuesta empresarial del sector de tecnología y seguridad dedicada al diseño, instalación, integración y mantenimiento de soluciones de seguridad tecnológica.</p>`+L(['Protección física y digital.','Seguridad de instalaciones e información.','Soporte técnico y monitoreo.','Soluciones adaptadas a las necesidades de cada organización.'])],
+['Nuestros servicios','Un ecosistema de seguridad',C([['Videovigilancia IP','supervisión de instalaciones y operaciones mediante cámaras.'],['Control de acceso y alarmas','refuerzo de la seguridad física.'],['Evaluación de vulnerabilidades','revisiones y auditorías básicas de seguridad.'],['Redes e infraestructura','configuración y protección de redes tecnológicas.'],['Soporte y mantenimiento','asistencia técnica para favorecer la continuidad operativa.'],['Integración y monitoreo','coordinación de sistemas de seguridad y seguimiento de incidentes.']])],
+['Nuestra propuesta de valor','Una sola empresa para proteger todo lo que importa.',`<p>KORVANI integra seguridad física y digital, soporte técnico, monitoreo y atención especializada en soluciones personalizadas y escalables.</p><p><b>Proceso de atención</b></p>`+C([['Evaluar','identificar necesidades y vulnerabilidades.'],['Diseñar','crear una solución adaptada al cliente.'],['Implementar','instalar e integrar los componentes necesarios.'],['Proteger','fortalecer instalaciones, información y operaciones.'],['Monitorear','dar seguimiento técnico y atender incidentes.']])],
+['Perfil estratégico y mercado objetivo','Tecnología al servicio de las organizaciones',`<p><b>Sector:</b> Tecnología y seguridad.</p><p><b>Actividad principal:</b> Diseño, instalación, integración y mantenimiento de soluciones de seguridad tecnológica.</p><p><b>Mercado objetivo:</b></p>`+L(['Pequeñas y medianas empresas.','Comercios y oficinas.','Instituciones privadas.','Organizaciones que requieran protección física y tecnológica.'])],
+['Misión','Misión',`<blockquote>“Proporcionar soluciones integrales de seguridad tecnológica que permitan a las empresas proteger sus instalaciones, información y operaciones mediante tecnología confiable, atención especializada y soluciones adaptadas a sus necesidades.”</blockquote>`],
+['Visión','Visión',`<blockquote>“Convertirnos en una empresa referente en soluciones de seguridad tecnológica para pequeñas y medianas empresas, reconocida por nuestra innovación, confiabilidad y capacidad de ofrecer soluciones integrales.”</blockquote>`],
+['Valores y objetivos de crecimiento','Valores y metas de crecimiento',C([['Seguridad','proteger instalaciones, información, equipos y operaciones.'],['Innovación','incorporar tecnología que responda a las necesidades de las organizaciones.'],['Integridad','actuar con responsabilidad y coherencia.'],['Compromiso','brindar atención especializada y favorecer la continuidad del servicio.'],['Excelencia','buscar calidad en diseño, implementación, soporte y mantenimiento.']])+`<p><b>Metas de crecimiento proyectadas</b></p><div class="st">${N('15','Clientes en 0–12 meses')}${N('≈40','Clientes activos en 2–3 años')}${N('70+','Clientes activos en 4–5 años')}</div><p class="fin">Las cantidades son metas proyectadas, no clientes confirmados.</p>`],
+['Estructura organizacional','Una estructura orientada a resultados',`<div class="org"><div class="c top"><b>Dirección general</b><span>Estrategia y supervisión de la empresa</span></div>`+C([['Administración y finanzas','Responsable administrativo-financiero y auxiliar administrativo'],['Comercial y marketing','Ejecutivo comercial'],['Operaciones técnicas','Técnico de seguridad y técnico de soporte y monitoreo']])+`</div><p class="o"><b>Idea clave:</b> Cada área cumple una función complementaria para administrar los recursos, desarrollar las ventas y prestar los servicios tecnológicos.</p>`],
+['Perfil del director general','Dirección estratégica y liderazgo',`<p><b>Objetivo del cargo:</b> Dirigir las operaciones generales y establecer estrategias para el crecimiento y la sostenibilidad del negocio.</p><div class="cols"><div><h3>Funciones principales</h3>${L(['Definir estrategias empresariales.','Supervisar las diferentes áreas.','Aprobar presupuestos.','Tomar decisiones estratégicas.','Gestionar alianzas.','Evaluar resultados.'])}</div><div><h3>Competencias necesarias</h3>${L(['Liderazgo.','Toma de decisiones.','Planificación.','Comunicación.','Pensamiento estratégico.'])}</div></div><p class="fin">Transición: “Para que esta estructura funcione de manera eficiente, KORVANI también necesita políticas de recursos humanos que permitan seleccionar, desarrollar y retener al personal.”</p>`],
+['Gestión de recursos humanos','El talento como parte de la seguridad',`<p>Las políticas de recursos humanos de KORVANI se orientan a incorporar personal adecuado, fomentar su desarrollo profesional y favorecer su permanencia en la organización.</p>`+C([['Contratación responsable',''],['Desarrollo y beneficios',''],['Retención y capacitación continua','']])],
+['Políticas de contratación','Seleccionar con criterios claros',L(['Solicitar y revisar la documentación completa del personal.','Verificar el cumplimiento de los requisitos del puesto antes de contratar.','Definir los criterios de selección según las responsabilidades del cargo.'])+O('Incorporar colaboradores que cumplan los requisitos y puedan responder a las funciones asignadas.')],
+['Desarrollo y beneficios','Crecer junto con el equipo',L(['Ofrecer oportunidades de desarrollo para los colaboradores.','Procurar salarios competitivos de acuerdo con el puesto y la experiencia.','Promover oportunidades de crecimiento profesional.'])+O('Favorecer el desarrollo de las capacidades del equipo y su contribución a la empresa.')],
+['Retención y capacitación','Un equipo preparado para evolucionar',L(['Considerar flexibilidad laboral cuando las funciones lo permitan.','Promover condiciones de trabajo que favorezcan la permanencia del personal.','Impulsar la capacitación continua mediante cursos, talleres y certificaciones relacionadas con seguridad.'])+O('Fortalecer las capacidades técnicas y fomentar la continuidad del equipo.')],
+['Presupuesto de inversión inicial','Recursos necesarios para iniciar operaciones',`<p><b>Inversión inicial proyectada: C$695,861.70</b></p><table>${[['Equipos informáticos','197,771.22'],['Equipos de red y servidores','102,548.04'],['Herramientas técnicas','80,573.46'],['Equipos de demostración','65,923.74'],['Mobiliario de oficina','62,261.31'],['Adecuación de oficina','43,949.16'],['Software y licencias iniciales','36,624.30'],['Imagen, publicidad y lanzamiento','32,961.87'],['Capital de trabajo inicial','73,248.60'],['Total','695,861.70']].map(r=>`<tr><td>${r[0]}</td><td>C$${r[1]}</td></tr>`).join('')}</table>`],
+['Costos operativos mensuales','¿Cuánto cuesta operar KORVANI?',`<div class="st">${N('C$151,990.85','Nómina mensual')}${N('C$62,261.31','Otros gastos mensuales')}</div><p><b>Otros gastos incluyen:</b></p>`+L(['Alquiler de oficina.','Internet y telefonía.','Electricidad y servicios.','Transporte y combustible.','Marketing.','Software y licencias.','Mantenimiento y gastos administrativos.'])+`<p><b>Costo operativo mensual total: C$214,252.16</b></p>`],
+['Simulación financiera del primer año','Proyección de ingresos y resultados',`<div class="st">${N('C$3,863,863.65','Ingresos anuales proyectados')}${N('C$2,571,025.86','Gastos operativos anuales')}${N('C$1,292,837.79','Resultado operativo proyectado')}</div><div class="bar" role="img" aria-label="Los ingresos se distribuyen en 66.5% de gastos operativos y 33.5% de resultado proyectado"><i style="width:66.5%">Gastos operativos 66.5%</i><i style="width:33.5%">Resultado 33.5%</i></div><div class="st">${N('C$695,861.70','Inversión inicial')}${N('C$596,976.09','Resultado operativo menos inversión inicial')}</div><p class="fin"><b>Cálculos utilizados:</b> C$214,252.16 × 12 = C$2,571,025.86 en gastos operativos anuales · C$3,863,863.65 − C$2,571,025.86 = C$1,292,837.79 de resultado operativo proyectado · C$1,292,837.79 − C$695,861.70 = C$596,976.09 después de restar la inversión inicial.</p><p class="warn"><b>Importante:</b> se trata de una simulación, no de ganancias confirmadas. El resultado no debe presentarse como utilidad neta ni como garantía de recuperación de la inversión.</p>`],
+['Conclusión y visión futura','KORVANI: proteger hoy, evolucionar mañana',`<p>KORVANI propone integrar seguridad física y digital en una solución tecnológica que responda a las necesidades de las organizaciones.</p>`+C([['Protección integral','instalaciones, información y operaciones.'],['Crecimiento planificado','desarrollo progresivo de la cartera de clientes y de la capacidad técnica.'],['Sostenibilidad','control de costos, desarrollo del equipo y validación de las proyecciones financieras.']])+`<p class="fr">“Una sola empresa para proteger todo lo que importa.”</p>`]
+];
+const main=document.getElementById('main'),NAMES=['KORVANI®'];
+D.forEach((d,i)=>{const k=i+2,ex=k<9?1:k<11?2:3;NAMES.push(d[0]);
+main.insertAdjacentHTML('beforeend',`<section class="slide" id="s${k}" aria-label="${d[0]}"><article class="card"><span class="chip">Expositor ${ex} · ${d[0]}</span><h2 class="${d[1].length>40?'w':''}">${d[1]}</h2>${d[2]}</article></section>`)});
+
+(function(){try{
+if(!window.THREE||!window.gsap||!window.ScrollTrigger)throw 0;
+const cv=document.getElementById('gl'),R=new THREE.WebGLRenderer({canvas:cv,antialias:true});
+gsap.registerPlugin(ScrollTrigger);
+const H=document.documentElement;H.classList.add('cine');
+const sc=new THREE.Scene();sc.fog=new THREE.FogExp2(0x04020b,.045);
+const cam=new THREE.PerspectiveCamera(45,1,.05,60);
+R.setClearColor(0x04020b,1);
+sc.add(new THREE.AmbientLight(0x4a3a90,.9));
+const key=new THREE.DirectionalLight(0xb08cff,2.2);key.position.set(-3,3,5);sc.add(key);
+const blu=new THREE.PointLight(0x3a7bff,6,16);blu.position.set(3,-1,4);sc.add(blu);
+const rim=new THREE.PointLight(0x8b3aed,5,14);rim.position.set(0,2,-3);sc.add(rim);
+const rig=new THREE.Group(),body=new THREE.Group();rig.add(body);sc.add(rig);
+const mats=[];
+const M=(c,m,r,e,ei)=>{const x=new THREE.MeshStandardMaterial({color:c,metalness:m,roughness:r,emissive:e||0,emissiveIntensity:ei||1,transparent:true});mats.push([x,1]);return x};
+const add=(g,m,x,y,z,rx)=>{const o=new THREE.Mesh(g,m);o.position.set(x,y,z);if(rx)o.rotation.x=rx;body.add(o);return o};
+const cyl=(r,l,s)=>new THREE.CylinderGeometry(r,r,l,s||48).rotateX(Math.PI/2);
+add(cyl(.66,2.4),M(0x0b0b14,.8,.35),0,0,0);
+add(cyl(.7,.2),M(0x14121f,.8,.4),0,0,-1.25);
+add(new THREE.BoxGeometry(1.5,.07,2.7),M(0x120f22,.7,.4),0,.78,.25);
+add(new THREE.TorusGeometry(.62,.06,16,64),M(0x1c1a30,.9,.25),0,0,1.2);
+add(cyl(.56,.34),M(0x07070d,.9,.3),0,0,1.37);
+add(new THREE.TorusGeometry(.52,.035,12,64),M(0x9a8cff,1,.2,0x5b3df5,.6),0,0,1.54);
+add(new THREE.TorusGeometry(.42,.025,12,64),M(0x6a8cff,1,.2,0x2f6bff,.9),0,0,1.52);
+add(new THREE.TorusGeometry(.32,.02,12,64),M(0xb79cff,1,.2,0x7c3aed,1),0,0,1.5);
+add(new THREE.CircleGeometry(.5,48),M(0x03020a,.3,.6),0,0,1.47);
+add(new THREE.CircleGeometry(.14,32),M(0x6a4bff,0,.4,0x6a4bff,2.2),0,0,1.48);
+add(new THREE.CylinderGeometry(.09,.09,.9,16),M(0x14121f,.8,.4),0,1.15,-.75);
+add(new THREE.BoxGeometry(1,.12,.8),M(0x14121f,.8,.4),0,1.65,-.75);
+// glass shards
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const RR=[0,.1,.22,.36,.5],NS=12,V=[];
+for(let r=0;r<5;r++){V[r]=[];for(let s=0;s<NS;s++){if(!r){V[r][s]=[0,0];continue}const a=(s+(rnd()-.5)*.5)/NS*Math.PI*2,q=RR[r]*(r==4?1:1+(rnd()-.5)*.25);V[r][s]=[Math.cos(a)*q,Math.sin(a)*q]}}
+const shards=[],cp=[];
+for(let r=0;r<4;r++)for(let s=0;s<NS;s++){const s2=(s+1)%NS;
+const P=r?[V[r][s],V[r+1][s],V[r+1][s2],V[r][s2]]:[V[0][s],V[1][s],V[1][s2]];
+const c=P.reduce((a,p)=>[a[0]+p[0]/P.length,a[1]+p[1]/P.length],[0,0]),pos=[];
+for(let i=1;i<P.length-1;i++)[P[0],P[i],P[i+1]].forEach(p=>pos.push(p[0]-c[0],p[1]-c[1],(rnd()-.5)*.015));
+const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.computeVertexNormals();
+const col=new THREE.Color().setHSL(.62+rnd()*.14,.8,.6);
+const mt=new THREE.MeshStandardMaterial({color:col,metalness:.7,roughness:.12,transparent:true,opacity:.5,side:THREE.DoubleSide,emissive:col,emissiveIntensity:.15,flatShading:true});
+const m=new THREE.Mesh(g,mt);rig.add(m);
+const l=Math.hypot(c[0],c[1])||1,mag=1+rnd()*2.4,an=rnd()*6.28;
+const dx=r?c[0]/l:Math.cos(an),dy=r?c[1]/l:Math.sin(an);
+shards.push({m,mt,c,d:[dx*mag,dy*mag,.3+rnd()*2.3],r:[(rnd()-.5)*7,(rnd()-.5)*7,(rnd()-.5)*7],ph:rnd()*6.28})}
+for(let r=1;r<5;r++)for(let s=0;s<NS;s++){const s2=(s+1)%NS;cp.push(...V[r-1][s],1.56,...V[r][s],1.56);if(r<4)cp.push(...V[r][s],1.56,...V[r][s2],1.56)}
+const cg=new THREE.BufferGeometry();cg.setAttribute('position',new THREE.Float32BufferAttribute(cp.map((v,i)=>v),3));
+// fix: cp holds x,y,z triples
+const cp3=[];for(let r=1;r<5;r++)for(let s=0;s<NS;s++){const s2=(s+1)%NS,add3=(a,b)=>cp3.push(a[0],a[1],1.56,b[0],b[1],1.56);add3(V[r-1][s],V[r][s]);if(r<4)add3(V[r][s],V[r][s2])}
+cg.setAttribute('position',new THREE.Float32BufferAttribute(cp3,3));
+const cmat=new THREE.LineBasicMaterial({color:0xdfe6ff,transparent:true}),cracks=new THREE.LineSegments(cg,cmat);rig.add(cracks);
+const nseg=cp3.length/6;
+// particles
+const pp=[];for(let i=0;i<500;i++){const r=3+rnd()*12,a=rnd()*6.28,b=Math.acos(2*rnd()-1);pp.push(r*Math.sin(b)*Math.cos(a),r*Math.cos(b),r*Math.sin(b)*Math.sin(a))}
+const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.Float32BufferAttribute(pp,3));
+const pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0x9a7cff,size:.035,transparent:true,opacity:.7,blending:THREE.AdditiveBlending,depthWrite:false}));sc.add(pts);
+// state driven by the master timeline
+const S={yaw:-1.1,z:7,x:0,y:0,lx:0,lz:0,roll:0,crack:0,frac:0,body:1,sh:1,reform:0,hue:0,emerge:0};
+function frame(tm){const t=tm/1000,bo=S.body*S.emerge;
+mats.forEach(([m,b])=>m.opacity=b*bo);body.visible=bo>.01;
+rig.rotation.set(.06,S.yaw,0);rig.position.y=-.4;
+const e=S.frac*(1-S.reform);
+shards.forEach(o=>{o.m.position.set(o.c[0]+o.d[0]*e+Math.sin(t*.6+o.ph)*.1*e,o.c[1]+o.d[1]*e+Math.cos(t*.5+o.ph)*.1*e,1.55+o.d[2]*e);
+o.m.rotation.set(o.r[0]*e,o.r[1]*e,o.r[2]*e);o.mt.opacity=.5*S.sh*Math.min(1,S.emerge*2)});
+cg.setDrawRange(0,Math.floor(S.crack*nseg)*2);cmat.opacity=Math.max(0,1-S.frac*4)*S.emerge;
+blu.position.x=3*Math.cos(S.hue*Math.PI);rim.intensity=3+3*S.hue;key.intensity=2.2*S.emerge;
+pts.rotation.y=t*.02+S.z*.1;
+cam.position.set(S.x,S.y,S.z);cam.lookAt(S.lx,-.4,S.lz);cam.rotateZ(S.roll);
+R.render(sc,cam)}
+function rs(){const dpr=Math.min(devicePixelRatio||1,H.classList.contains('pres')?1.25:2);R.setPixelRatio(dpr);R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
+addEventListener('resize',rs);rs();gsap.ticker.add((a,b)=>frame(performance.now()));
+// intro on load: title letters + camera emerging from darkness
+const ttl=document.getElementById('ttl');ttl.innerHTML=[...ttl.textContent].map(c=>`<span>${c}</span>`).join('');
+gsap.from('#ttl span',{y:50,opacity:0,filter:'blur(12px)',duration:1.4,stagger:.1,ease:'power3.out',delay:.3});
+gsap.to(S,{emerge:1,duration:3.2,delay:.8,ease:'power2.out'});
+// master timeline scrubbed by scroll
+const T0=6.6,TOTAL=T0+17*3+.4,navT=[.2];
+const tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#track',start:'top top',end:'bottom bottom',scrub:1,onUpdate:self=>{const t=self.progress*TOTAL;let i=0;navT.forEach((n,j)=>{if(n-1.4<=t)i=j});ct.textContent=(i+1)+' / 18';document.getElementById('hint').style.opacity=t<.4?1:0}}});
+tl.set({},{},TOTAL);
+tl.to(S,{yaw:0,z:5.6,duration:2,ease:'power1.inOut'},0)
+.to('#hero',{opacity:0,y:-40,duration:1.4},.5)
+.to(S,{z:2.1,lz:1.55,y:-.4,duration:2.2,ease:'power2.inOut'},2)
+.to(S,{crack:1,duration:.8},4.1)
+.to('#flash',{opacity:.85,duration:.15},4.85).to('#flash',{opacity:0,duration:.6},5)
+.to(S,{frac:1,duration:1.2,ease:'power3.out'},4.9)
+.to(S,{body:0,duration:1},5)
+.to(S,{z:4.5,lz:.8,duration:1.2,ease:'power2.inOut'},5.9)
+.to(S,{sh:.45,duration:.8},6.2);
+const VR=[{x:90,rotationY:-14},{y:70,rotationX:10},{scale:.86},{x:-90,rotationY:14},{y:-60,scale:1.06}];
+for(let k=2;k<=18;k++){const ti=T0+(k-2)*3,el='#s'+k,calm=k>=15&&k<=17;
+tl.fromTo(el,{autoAlpha:0,...(calm?{y:14}:VR[k%5])},{autoAlpha:1,x:0,y:0,scale:1,rotationX:0,rotationY:0,duration:.7,ease:'power2.out'},ti);
+navT.push(ti+1.5);
+if(k<18){tl.to(el,{autoAlpha:0,y:-24,scale:.98,duration:.6},ti+2.4);
+const a=Math.sin(k*1.9)*(calm?.25:.7);
+tl.to(S,{x:a,y:-.4+Math.cos(k*1.3)*(calm?.08:.25),lx:-a*.4,roll:Math.sin(k*2.3)*(calm?.01:.04),hue:k%2,duration:1.4,ease:'power1.inOut'},ti-.2)}
+else tl.to(S,{reform:1,z:3.3,x:0,y:-.4,lx:0,lz:1.55,roll:0,hue:0,duration:2,ease:'power2.inOut'},ti+.2).to(S,{sh:1,body:.55,duration:2},ti+.2)}
+// navigation
+const ct=document.getElementById('ct');let cur=0;
+const idx=()=>{const t=scrollY/(H.scrollHeight-innerHeight)*TOTAL;let i=0;navT.forEach((n,j)=>{if(n-1.4<=t)i=j});return i};
+const go=i=>{i=Math.max(0,Math.min(17,i));scrollTo({top:navT[i]/TOTAL*(H.scrollHeight-innerHeight),behavior:'smooth'})};
+document.getElementById('pv').onclick=()=>go(idx()-1);document.getElementById('nx').onclick=()=>go(idx()+1);
+const pm=document.getElementById('pm');pm.onclick=()=>{const on=H.classList.toggle('pres');pm.setAttribute('aria-pressed',on);rs();ScrollTrigger.refresh()};
+addEventListener('keydown',e=>{const k=e.key;if(['ArrowRight','ArrowDown','PageDown',' '].includes(k)){e.preventDefault();go(idx()+1)}else if(['ArrowLeft','ArrowUp','PageUp'].includes(k)){e.preventDefault();go(idx()-1)}else if(k==='p'||k==='P')pm.click();else if(k==='Home')go(0)});
+}catch(err){document.documentElement.classList.remove('cine');console.warn('Modo estático: efectos 3D no disponibles',err)}})();
+</script></body></html>
